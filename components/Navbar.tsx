@@ -12,18 +12,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 import { useCart } from "../hooks/useCart";
-import { User,Order } from '@prisma/client'
+import axios from "axios";
 import { Button } from "@/components/ui/button";
-
+import { User } from "@prisma/client";
+import toast from "react-hot-toast";
 const Navbar = ({
  path,
   User,
  
 }: {
   path?: string;
- User:(User & {
-  orders: Order[];
-}) | null|undefined;
+  User:User | null
+
 }) => {
   const {cartTotalQty} = useCart()
   const Router = useRouter()
@@ -199,17 +199,13 @@ const Navbar = ({
                         //onFocus={toggleParamsUser}
                         className="f rounded-full flex justify-center items-stretch mr-3 w-10 h-10  lg:focus:ring-2 ring-white bg-white"
                       >
-                        {/* <Image
-                        src={Me}
-                        alt="Moi"
-                        className="rounded-full object-cover w-full "
-                      /> */}
+                     
                         <Avatar className="rounded-full bg-slate-400 text-white flex justify-center items-center font-bold">
-                          <AvatarImage
+                          {/* <AvatarImage
                             src={User?.picture ?? ""}
                             alt="user-Image"
                             className="object-cover"
-                          />
+                          /> */}
                           <AvatarFallback className="text-orange-500">
                             {User?.firstName?.[0].toUpperCase()} {User?.lastName?.[0]}
                           </AvatarFallback>
@@ -220,7 +216,7 @@ const Navbar = ({
                       <p className="font-bold text-white">
                         {User?.firstName} {User?.lastName}
                       </p>
-                      <p>{User?.email}</p>
+                      <p className="hidden lg:block">nom d&apos;utilisateur: {User?.username}</p>
                     </div>
                   </div>
                   {/* Profile,Settings,Sign out */}
@@ -230,7 +226,7 @@ const Navbar = ({
                     } lg:hidden  lg:absolute lg:right-0 lg:top-0 lg:translate-y-12 mt-4 lg:bg-white lg:shadow-md lg:rounded-md lg:py-2  lg:w-[300px] div-account`}
                   >
                     <ul className="p-0">
-                      <li className={`${settingsUser} font-bold`}>{User?.email}</li>
+                      <li className={`${settingsUser} font-bold`}>{User?.username}</li>
                       <hr className="hidden lg:block lg:text-gray-500 h-1"></hr>
                      
                       <Link
@@ -242,8 +238,15 @@ const Navbar = ({
                     
                      
                       <Link
-                        href="/api/auth/logout"
+                        href="#"
                         className="cursor-pointer group/settingsAcc"
+                        onClick={()=>{
+                            axios.post('/api/logOut').then(()=>{
+                                toast.success("déconnexion réussie")
+                            }).catch((error)=>{
+                                toast.error('error de connexion')
+                            })
+                        }}
                       >
                         <li className={`${settingsUser}`}>Se déconnecter</li>
                       </Link>
@@ -261,12 +264,7 @@ const Navbar = ({
                 </span>
               </div>
 
-              {/* <div className="notification rounded-full lg:mr-4 mr-0 lg:order-first text-center flex">
-                <button className="w-10 h-10 rounded-full focus:ring-2 ring-white border-0">
-                  <i className="text-white text-2xl fa-regular fa-bell"></i>
-                </button> 
-               
-              </div> */}
+              
             </div>
           </div>
           {/* End settingsUser */}

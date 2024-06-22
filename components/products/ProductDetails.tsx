@@ -9,31 +9,27 @@ import { formatPrice } from '@/lib/formatPrice'
 import { Rating } from '@mui/material'
 import { LucideCheckCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-interface ProductDetailsProps {
-  product:any
-
-}
+import { ProductCardProps } from './ProductCard'
 
 const Horizontal = () => {
   return <hr className='w-[30%] my-2'/>
 }
 export type CartProductType = {
-  id:string,
+  id:number,
   name:string,
   description?:string,
   category:string
-  brand:string,
-  selectedImg: SelectedImgType,
+  brand?:string,
+  selectedImg: string,
   quantity:number,
-  price:number
+  price:number,
+  images:string[]
 
 }
-export type SelectedImgType = {
-  color?:string,
-  colorCode?: string,
-  image:string
-}
-const ProductDetails:React.FC<ProductDetailsProps> = ({product}) => {
+
+const ProductDetails:React.FC<ProductCardProps> = ({product}) => {
+  
+  
  
   const Router = useRouter()
   
@@ -42,13 +38,14 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({product}) => {
   
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id:product?.id,
-    name:product.name,
+    name:product.title,
     description:product.description,
     category:product.category,
     brand:product.brand,
-    selectedImg: {...product.image[0]},
+    selectedImg: product.images[0],
     quantity:1,
-    price:product.price
+    price:product.price,
+    images:product.images
   })
   console.log(cartProducts)
   useEffect(()=>{
@@ -67,13 +64,13 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({product}) => {
       return {...prev, quantity:++prev.quantity}
     })
   },[cartProduct])
-  const handleColorSelect = useCallback((value:SelectedImgType) =>{
+  /*const handleColorSelect = useCallback((value:SelectedImgType) =>{
    setCartProduct((prev)=>{
     return {...prev,selectedImg:value}
    }) 
   },
   [cartProduct.selectedImg]
-  )
+  )*/
   const handleQtyDecrease = useCallback(() =>{
     if(cartProduct.quantity === 1) return
     setCartProduct((prev) =>{
@@ -84,7 +81,7 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({product}) => {
     <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
      <ProductImage cartProduct={cartProduct} product={product} handleColorSelect={handleColorSelect} />
       <div className='flex flex-col gap-1 text-gray-500 text-sm'>
-        <h2 className='text-3xl font-medium text-blue-700'>{product.name}</h2>
+        <h2 className='text-3xl font-medium text-blue-700'>{product.title}</h2>
         <p className='font-bold'>{formatPrice(product.price)}</p>
        
         <div className='flex items-center gap-2'>
@@ -106,9 +103,9 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({product}) => {
           <span className='font-semibold'>marque: </span>
           <span>{product.brand}</span>
         </div>
-        <div className={product.inStock ? "text-teal-400" : "text-red-500"}>
+        {/* <div className={product.inStock ? "text-teal-400" : "text-red-500"}>
           {product.inStock ? "En stock" : "Stock épuisé"}
-        </div>
+        </div> */}
         <Horizontal />
         {isProductInCart ? (
           <>
