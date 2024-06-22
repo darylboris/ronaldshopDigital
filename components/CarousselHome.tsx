@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { cn } from "@/lib/utils";
-import { ListBlobResultBlob, list } from '@vercel/blob';
+
 import {
   Carousel,
   CarouselContent,

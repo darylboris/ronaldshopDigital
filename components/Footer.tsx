@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import vStore from "../public/vStore.png";
+ import vStore from "../public/vStore.png";
 import Link from 'next/link';
 import Image from 'next/image';
 const Footer = () => {

@@ -47,12 +47,12 @@ export default async function Home() {
     </header> 
      <hr className="mx-14 border-2 border-orange-500 mb-4"/>
     
-<GetSliderImages />
+{/* <GetSliderImages /> */}
    <div >
       <div>
         {/* Mobile filter dialog */}
  
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
+        <main className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
           {/* Product grid */}
           {!products || products.length === 0  ?
           (
@@ -60,7 +60,7 @@ export default async function Home() {
           )
           :
           (
-            <div className="mx-auto grid grid-cols-1 justify-items-center max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-3 lg:max-5xl  xl:grid-cols-4 gap-16 min-h-[400px]">
+            <div className="mx-auto grid grid-cols-1 justify-items-center max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-3 lg:max-w-5xl  xl:grid-cols-4 xl:max-w-6xl gap-16 min-h-[400px]">
             {products.map((data,index) =>{
               return (
                 <ProductCard key={index} product={data} />
