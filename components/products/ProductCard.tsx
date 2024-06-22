@@ -18,7 +18,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   
   
   return (
-    <div className="flex flex-col border-2 ">
+    <div className="w-full flex flex-col border-2 ">
      
         {" "}
         <div 

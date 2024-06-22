@@ -62,7 +62,7 @@ const FormLogin = () => {
             toast.success("connexion reussie")
             }
         } catch (error) {
-            toast.error("impossible de se connecter au serveur",{
+            toast.error("une erreur s&apos;est produite",{
                 style:{
                     backgroundColor:"red",
                 }

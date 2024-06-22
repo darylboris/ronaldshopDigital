@@ -5,7 +5,7 @@ import Navbar from '../../../../components/Navbar';
 import ProductDetails from '../../../../components/products/ProductDetails';
 import ListRating from './ListRating';
 import { getProductById } from '@/lib/actions';
-import AddRating from './AddRating';
+
 import authUser from '@/lib/user';
 import { typeProduct } from '@/app/page';
 

@@ -6,7 +6,8 @@ const getProducts = async () => {
     console.log(data.products)
     return data.products
     } catch (error) {
-        throw error
+        return null
+        //throw error
         
     }
     

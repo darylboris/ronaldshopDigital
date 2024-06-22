@@ -6,16 +6,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import moment from "moment";
 import { Rating } from "@mui/material";
 import { Order, Product, Review, User } from "@prisma/client";
+import { ProductCardProps } from "../../../../components/products/ProductCard";
 
-interface ListRatingProps {
-  product: any;
-}
-// interface ListRatingProps {
-//   product:Product & {
-//     reviews: Review[];
-//   };
-// }
-const ListRating: React.FC<ListRatingProps> = ({ product }) => {
+
+const ListRating: React.FC<ProductCardProps> = ({ product }) => {
   console.log(product);
   if (product.reviews.length === 0) return null;
   return (

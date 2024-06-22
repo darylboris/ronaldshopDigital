@@ -27,7 +27,7 @@ export async function createSession(user:User){
     cookies().set("userSession",session,{expires,httpOnly:true});
 }
 export async function getSession(){
-   const session  = cookies().get('suserSession')?.value
+   const session  = cookies().get('userSession')?.value
    if(!session) return null
    return await decrypt(session)
 }
@@ -49,6 +49,6 @@ export async function updateSession(request:NextRequest){
   return res
 }
 export async function logOut(){
-    -cookies().set("userSession"," ",{expires:new Date(0)})
+    cookies().set("userSession"," ",{expires:new Date(0)})
 }
 

@@ -58,7 +58,7 @@ const FormRegister = () => {
         setIsLoading(true)
         try {
             const existingUser = await addUser(values)
-            CONSOLE.LOG(existingUser)
+         
             if (existingUser === true){
                 toast.success("nom d'utilisateur ou mot de passe deja utilise")
                 return
@@ -66,7 +66,7 @@ const FormRegister = () => {
              toast.success('inscription reussie')
              Router.refresh()
         } catch (error) {
-            toast.error("impossible de se connecter au serveur",{
+            toast.error("une erreur s&apos;est produite",{
                 style:{
                     backgroundColor:"red",
                 }

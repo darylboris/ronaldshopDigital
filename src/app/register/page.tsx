@@ -6,7 +6,7 @@ const Page = async () => {
     const currentUser  = await authUser()
     if(currentUser) redirect("/")
   return (
-    <div  className="flex  justify-center items-center bg-gray-300">
+    <div  className="min-h-screen flex flex-col  justify-center items-center bg-gray-300">
         <div className='text-center'>
         <h1 className='text-blue-900 text-center'>S&apos;inscrire sur RonaldShop</h1>
         <p>Bienvenue parmi nous</p>
