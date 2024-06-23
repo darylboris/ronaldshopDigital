@@ -127,7 +127,7 @@ const Navbar = ({
           <div className="flex flex-col lg:flex-row w-full gap-x-4">
             <div className="flex w-full justify-center lg:justify-start lg:w-[150px] flex-initial">
             
-              <Image src={logo} alt="logo R-shop" width={250} />
+              <Image src={logo} alt="logo R-shop" width={120} className="rounded-full" />
             </div>
             <div className="flex flex-row grow justify-center">
               <div className="grow text-center flex justify-center items-center">
@@ -200,7 +200,7 @@ const Navbar = ({
                         onClick={toggleParamsUser}
                         //onBlur={toggleParamsUser}
                         //onFocus={toggleParamsUser}
-                        className="f rounded-full flex justify-center items-stretch mr-3 w-10 h-10  lg:focus:ring-2 ring-white bg-white"
+                        className="f rounded-full flex justify-center items-stretch mr-3 w-15 h-15  lg:focus:ring-2 ring-white bg-white"
                       >
                      
                         <Avatar className="rounded-full bg-slate-400 text-white flex justify-center items-center font-bold">

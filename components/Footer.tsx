@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="divide-y-3 divide-gray-500">
             <div className=" flex flex-col lg:flex-row mb-8 gap-4 justify-start lg:gap-32">
                 <div>
-                <Image src={logo} alt="logo R-shop" className='w-[150px]'  />
+                <Image src={logo} alt="logo R-shop" className='w-[150px] rounded-full'  />
                 </div>
                 <div className="grow flex flex-col xl:flex-row gap-16">
                     <div className="grow grid grid-cols-2 max-w-sm md:grid-cols-3 md:max-w-5xl gap-x-8 gap-y-16 md:gap-32">

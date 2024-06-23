@@ -49,7 +49,7 @@ export default async function Home() {
     
  <GetSliderImages category={null} title={"Découvrez tous les produits de chez RonaldShop"} /> 
   
-      <div className="mt-8">
+      <div className="my-8">
         {/* Mobile filter dialog */}
  
         <main className="mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
