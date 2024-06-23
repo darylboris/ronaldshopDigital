@@ -13,9 +13,11 @@ import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 import { useCart } from "../hooks/useCart";
 import axios from "axios";
-import { Button } from "@/components/ui/button";
+import { LogOut } from 'lucide-react';
 import { User } from "@prisma/client";
 import toast from "react-hot-toast";
+import { ShoppingBag } from 'lucide-react';
+import { CircleUserRound } from 'lucide-react';
 const Navbar = ({
  path,
   User,
@@ -36,18 +38,18 @@ const Navbar = ({
   const toggleParamsUser = () => {
     setToggleParamsUser(!istoggleParamsUser);
   };
-  const settingsUser = "text-white lg:px-4 px-0 py-2 lg:text-blue-700 lg:group-hover/settingsAcc:hover:bg-gray-200  ease-in duration"
+  const settingsUser = "text-white  lg:text-blue-700 lg:group-hover/settingsAcc:hover:bg-gray-200  ease-in duration"
   const links = [
     { href: "/", content: "Accueil" },
     { href: "", content: "Nos catégories" },  
     { href: "/beauty", content: "BEAUTY" },
-    { href: "#", content: "TOPS" },
+    { href: "/tops", content: "TOPS" },
     { href: "#", content: "FURNITURE" },
   
   ];
   const Categories = [
     { href: "/beauty", content: "BEAUTY" },
-    { href: "#", content: "TOPS" },
+    { href: "/tops", content: "TOPS" },
     { href: "#", content: "FURNITURE" },
     { href: "#", content: "FRAGRANCES" },
        
@@ -177,13 +179,13 @@ const Navbar = ({
               {!User ? (
                 <div className="space-x-2 flex mr-4 flex-row">
                   <Link
-                    href="/api/auth/login"
+                    href="/login"
                     className="rounded-md text-white px-4 py-2 bg-blue-700 hover:bg-blue-800 transition-all ease-in duration 100"
                   >
                     Sign
                   </Link>
                   <Link
-                    href="/api/auth/register"
+                    href="/register"
                     className="rounded-md text-white px-4 py-2 bg-blue-700 hover:bg-blue-800 transition-all ease-in duration 100"
                   >
                     Register
@@ -225,30 +227,38 @@ const Navbar = ({
                       !istoggleParamsUser ? "isSlideSettings" : ""
                     } lg:hidden  lg:absolute lg:right-0 lg:top-0 lg:translate-y-12 mt-4 lg:bg-white lg:shadow-md lg:rounded-md lg:py-2  lg:w-[300px] div-account`}
                   >
-                    <ul className="p-0">
-                      <li className={`${settingsUser} font-bold`}>{User?.username}</li>
+                    <ul className="p-0 mb-4 lg:mb-0">
+                      <div className="lg:px-4 py-2 inline-flex items-center cursor-pointer">
+                      <CircleUserRound strokeWidth={2.25} className="mr-2 text-white lg:text-blue-700" />
+                      <li className="font-bold  text-orange-500">{User?.username}</li>
+                      </div>
+                      
                       <hr className="hidden lg:block lg:text-gray-500 h-1"></hr>
                      
                       <Link
                         href="/orders"
-                        className="cursor-pointer group/settingsAcc"
+                        className="w-full lg:hover:bg-gray-300   ease-in duration lg:px-4 py-2 inline-flex items-center cursor-pointer"
                       >
-                        <li className={`${settingsUser}`}>Mes achats</li>
+                        <ShoppingBag strokeWidth={2.25}  className="mr-2 text-white lg:text-blue-700"/>
+                        <li className='text-white  lg:text-blue-700'>Mes achats</li>
                       </Link>
                     
                      
                       <Link
                         href="#"
-                        className="cursor-pointer group/settingsAcc"
+                        className="w-full lg:hover:bg-gray-300  ease-in duration lg:px-4 py-2 inline-flex items-center cursor-pointer"
                         onClick={()=>{
                             axios.post('/api/logOut').then(()=>{
                                 toast.success("déconnexion réussie")
+                                Router.refresh()
                             }).catch((error)=>{
-                                toast.error('error de connexion')
+                              console.log(error)
+                                toast.error("une erreur s'est produite")
                             })
                         }}
                       >
-                        <li className={`${settingsUser}`}>Se déconnecter</li>
+                        <LogOut strokeWidth={2.25} className="mr-2 text-white lg:text-blue-700" />
+                        <li className='text-white  lg:text-blue-700'>Se déconnecter</li>
                       </Link>
                     </ul>
                   </div>
@@ -258,7 +268,7 @@ const Navbar = ({
               <div
               onClick={() => {Router.push("/cart")}}
               className="relative flex flex-col  w-fit cursor-pointer">
-                <ShoppingCart className="text-white mr-4" size={40} />
+                <ShoppingCart className="text-white mr-4" size={35} />
                 <span className="absolute flex justify-center items-center text-white text-sm right-1 -top-1 w-6 h-6 rounded-full bg-orange-500 ">
                  {cartTotalQty}
                 </span>

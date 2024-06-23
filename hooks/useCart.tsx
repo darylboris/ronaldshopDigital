@@ -1,5 +1,5 @@
 import {createContext, useCallback, useContext, useEffect, useState} from "react"
-import { CartProductType } from "../components/ProductDetails"
+import { CartProductType } from "../components/products/ProductDetails"
 type CartContextType = {
     cartTotalQty:number
     cartProducts: CartProductType[] | null

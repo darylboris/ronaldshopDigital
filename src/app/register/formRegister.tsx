@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-
+import { cn } from "@/lib/utils"
 import {
   Form,
   FormControl,
@@ -40,8 +40,8 @@ export const formSchemaRegister = z.object({
     )
 })
 const FormRegister = () => {
-    const classInput = `px-4 py-2 focus:ring-blue-900 ring-4 rounded-md`
-    const classLabel = `font-light text-blue-900 `
+    const classInput = `px-4 py-2 font-light rounded-lg border-gray-400 focus:ring-blue-700  outline-none focus:ring-2 ring-offset-2 border`
+    const classLabel = `font-light text-blue-900`
     const Router = useRouter()
     const [isLoading,setIsLoading] = useState<boolean>(false)
     const form = useForm<z.infer<typeof formSchemaRegister>>({
@@ -60,13 +60,13 @@ const FormRegister = () => {
             const existingUser = await addUser(values)
          
             if (existingUser === true){
-                toast.success("nom d'utilisateur ou mot de passe deja utilise")
+                toast.success("nom d'utilisateur ou mot de passe déjà utilisé")
                 return
             } 
              toast.success('inscription reussie')
              Router.refresh()
         } catch (error) {
-            toast.error("une erreur s&apos;est produite",{
+            toast.error("une erreur s'est produite",{
                 style:{
                     backgroundColor:"red",
                 }
@@ -78,7 +78,8 @@ const FormRegister = () => {
       }
   return (
   
-        <div className="max-w-[1000px] px-4 py-2 shadow-lg">
+        <div className="w-full">
+          <p className=""></p>
         <Form {...form}  >
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -92,6 +93,7 @@ const FormRegister = () => {
                     </FormLabel>
                     <FormControl id="username" className={`${classInput}`}>
                       <Input
+                     
                        
                        
                         type="text"
@@ -154,9 +156,10 @@ const FormRegister = () => {
                     </FormLabel>
                     <FormControl
                       id="pwd"
+                      className={`${classInput}`}
           
                     >
-                      <Input type="text" {...field} />
+                      <Input type="password" {...field} />
                     </FormControl>
                   
                  
@@ -164,10 +167,9 @@ const FormRegister = () => {
                 </FormItem>
               )}
             />
-
-           
+            <p className="text-sm mt-1 font-light">Vous avez déjà un compte?<span><a href="/login" className="italic hover:font-bold hover:text-blue-900 duration transition">Connectez-vous</a></span></p>
             {isLoading ? (
-                 <div>
+                //  <div>
                  <Button
                  disabled
                    type="submit"
@@ -176,7 +178,7 @@ const FormRegister = () => {
                     <Loader2 className="text-white  animate-spin mr-2" />
                  S&apos;inscrire
                  </Button>
-               </div>
+              //  </div>
             )
           :
           (

@@ -49,6 +49,6 @@ export async function updateSession(request:NextRequest){
   return res
 }
 export async function logOut(){
-    cookies().set("userSession"," ",{expires:new Date(0)})
+    cookies().set("userSession","",{expires:new Date(0)})
 }
 

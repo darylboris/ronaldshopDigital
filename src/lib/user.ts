@@ -60,8 +60,15 @@ export async function addUser(values:z.infer<typeof formSchemaRegister>){
 export async function existingUser(user:z.infer<typeof formSchemaRegister>){
     const existingUser = await prisma.user.findFirst({
         where:{
-            username:user.username,
-            password:user.password
+            OR:[
+                {
+                    username:user.username,
+                },
+               { password:user.password
+
+               }
+            ]
+          
         }
       
     })

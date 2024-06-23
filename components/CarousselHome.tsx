@@ -14,14 +14,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { typeGetImage } from "./GetSliderImages";
 interface CarousselProps{
   titleCaroussel:string,
-  data:ListBlobResultBlob[] | null
+  data: typeGetImage | null
 }
 const CarousselHome:React.FC<CarousselProps> = ({titleCaroussel,data}) => {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   )
+  
   const [emblaRef] = useEmblaCarousel({ loop: false }, [Autoplay()])
   return (
     <div className="w-full px-8 flex justify-center" ref={emblaRef}>
@@ -39,16 +41,16 @@ const CarousselHome:React.FC<CarousselProps> = ({titleCaroussel,data}) => {
     >
         <h1 className="text-center text-lg mb-2 text-blue-700">{titleCaroussel}</h1>
      <CarouselContent className="-ml-1 md:-ml-4"> 
-    {/* {data === null &&  (
+    {/* { {data === null &&  (
       <CarouselItem>fffffffff</CarouselItem>
-    )} */}
+    )} } */}
 {data?.map((img,index) =>{
       return (
         <CarouselItem key={index}  className="w-full pl-1 md:basis-1/2 lg:basis-1/3">
      <div className="w-full ">
               <Card>
                 <CardContent className="w-full p-0 grow aspect-square flex h-[300px]">
-                  <Image src={img.url} width={400} height={400} alt="ff" className="w-full object-contain"/>
+                  <Image src={img.images[0]} width={400} height={400} alt={`${img.images[0]}`} className="w-full object-contain"/>
 
                 </CardContent>
               </Card>

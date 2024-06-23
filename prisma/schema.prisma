@@ -25,10 +25,11 @@ model User {
 model Order{
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
   amount Int
-  createddate DateTime
+  deliveryStatus String
+  createdDate DateTime
   currency String
   products CartProductType []
-  status String
+  
   userId String @db.ObjectId
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
 

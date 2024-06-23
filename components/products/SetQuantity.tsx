@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { CartProductType } from "../ProductDetails";
+import { CartProductType } from "./ProductDetails";
 import { Plus } from "lucide-react";
 import { MinusIcon } from "lucide-react";
 
@@ -23,14 +23,12 @@ const SetQuantity: React.FC<SetQtyProps> = ({
         {" "}
         <MinusIcon
         onClick={handleQtyDecrease}
-          className=" border
-                     rounded-md border-blue-700"
+          className="hover:text-blue-900 hover:cursor-pointer ease duration-100 transition"
         />
-        <span>{cartProduct.quantity}</span>
+        <span className="text-blue-900 font-semibold">{cartProduct.quantity}</span>
         <Plus
          onClick={handleQtyIncrease}
-          className=" border
-                     rounded-md border-blue-700"
+          className="hover:text-blue-900 hover:cursor-pointer ease duration-100 transition"
         />
       </div>
     </div>

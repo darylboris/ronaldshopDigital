@@ -1,18 +1,19 @@
 "use client"
 import React from 'react'
-import { CartProductType, SelectedImgType } from '../ProductDetails'
+import { CartProductType } from './ProductDetails';
 import Image from 'next/image'
+import { typeProduct } from '@/app/page';
 interface ProductImagesProps{
     cartProduct: CartProductType,
-    product:any
-    ,
-    handleColorSelect:(value:SelectedImgType) => void;
+    product:typeProduct,
+    
+    handleSelectImage:(value:string) => void;
 }
 
 const ProductImage:React.FC<ProductImagesProps> = ({
     cartProduct,
     product,
-    handleColorSelect,
+    handleSelectImage,
 }) => {
   return (
     <div className='grid grid-cols-6 gap-2
@@ -29,17 +30,17 @@ const ProductImage:React.FC<ProductImagesProps> = ({
          border
        
          '>
-            {product.image.map((image:SelectedImgType) => {
+            {product.images.map((image:string) => {
                 return (
-                    <div key={image.color}
-                    onClick={() => handleColorSelect(image)}
+                    <div key={product.id}
+                    onClick={() =>  handleSelectImage(image)}
                     className={`relative w-[80%]
                     aspect-square
                     rounded
                     border-orange-500
-                    ${cartProduct.selectedImg.color === image.color ? 'border-[1.5px]': 'border-none'}
+                    ${cartProduct.selectedImg === image ? 'border-[1.5px]': 'border-none'}
                     `}
-                    ><Image src={image.image} alt={image?.color ?? 'produit'} fill className='object-contain'/>
+                    ><Image src={image} alt={product.title} fill className='object-contain'/>
                     </div>
                 )
             })}
@@ -48,8 +49,8 @@ const ProductImage:React.FC<ProductImagesProps> = ({
                 <Image fill className='w-full
                  h-full
                   object-contain'
-                  src={cartProduct.selectedImg.image}
-                  alt={cartProduct.name}
+                  src={cartProduct.selectedImg}
+                  alt={cartProduct.title}
                   />
             </div>
     </div>

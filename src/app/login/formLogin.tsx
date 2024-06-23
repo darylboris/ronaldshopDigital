@@ -35,7 +35,7 @@ export const formSchemaLogin = z.object({
     )
 })
 const FormLogin = () => {
-    const classInput = `px-4 py-2 focus:ring-blue-900 ring-4 rounded-md`
+     const classInput = `px-4 py-2 font-light rounded-lg border-gray-400 focus:ring-blue-700  outline-none focus:ring-2 ring-offset-2 border`
     const classLabel = `font-light text-blue-900 `
     const Router = useRouter()
     const [isLoading,setIsLoading] = useState<boolean>(false)
@@ -53,16 +53,17 @@ const FormLogin = () => {
         console.log(values)
         try {
             const user = await getUser(values)
-            if(!user) toast.error("impossible de trouver l'utilisateur",{
+            if(!user) toast.error("identifiants incorrectes",{
                 style:{
                     backgroundColor:"red",
+                     color:"white"
                 }
             })
                 else{
             toast.success("connexion reussie")
             }
         } catch (error) {
-            toast.error("une erreur s&apos;est produite",{
+            toast.error("une erreur s'est produite",{
                 style:{
                     backgroundColor:"red",
                 }
@@ -76,7 +77,7 @@ const FormLogin = () => {
       }
   return (
    
-        <div className="max-w-[1000px] px-4 py-2 shadow-lg">
+        <div className="w-full">
         <Form {...form}  >
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -120,7 +121,7 @@ const FormLogin = () => {
                       className={`${classInput}`}
           
                     >
-                      <Input type="text" {...field} />
+                      <Input type="password" {...field} />
                     </FormControl>
                   
                  
@@ -129,7 +130,7 @@ const FormLogin = () => {
               )}
             />
 
-           
+<p className="text-sm mt-1 font-light">Pas encore de compte?<span><a href="/login" className="italic hover:font-bold hover:text-blue-900 duration transition">Creer en un!</a></span></p>
             {isLoading ? (
                  <div>
                  <Button
