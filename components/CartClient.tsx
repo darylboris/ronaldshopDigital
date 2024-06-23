@@ -1,27 +1,22 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "../hooks/useCart";
-
+import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
-import { ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import ItemContent from "./ItemContent";
 import { formatPrice } from "@/lib/formatPrice";
-import { User,Order } from "@prisma/client";
+import { User} from "@prisma/client";
 import sCart from '../public/sCart.svg'
-import axios from "axios";
 import toast from "react-hot-toast";
-import { CartProductType } from "./products/ProductDetails";
+
 const CartClient = ({User}:{User:User | null}
 ) => {
   const Router = useRouter();
-  const cartItems:any = localStorage.getItem('vStoreCartItems')
-        console.log(cartItems)
-        const cProducts: CartProductType[] | null = JSON.parse(cartItems)
-  console.log(cProducts)
+ const [isLoading,setIsLoading] = useState<boolean>(false)
         const { cartProducts,handleClearCart,cartTotalAmount } = useCart();
   console.log(cartProducts)
   if (!cartProducts || cartProducts.length === 0) {
@@ -57,10 +52,13 @@ const CartClient = ({User}:{User:User | null}
       </div>
     
 
-        {User ? (
+        {User ? (   
+
           <Button
            
-          onClick={()=>{fetch('/api/order',{
+          onClick={()=>{
+            setIsLoading(true)
+            fetch('/api/order',{
             method:"POST",
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
@@ -86,12 +84,13 @@ const CartClient = ({User}:{User:User | null}
                   color:"white"
               }
           })
+          setIsLoading(false)
           })
         }}
       
             className="mb-2 w-full flex flex-col justify-center items-center bg-blue-700 hover:bg-blue-900 text-white px-4 py-2 rounded-lg"
           >
-            Commander
+            Commander maintenant
           </Button>
         ) : (
           <Button

@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import moment from "moment";
 
 interface OrdersClientProps {
-  orders: ExtendedOrder[];
+  orders: ExtendedOrder[] ;
 }
 type ExtendedOrder = Order// & {
   //user: User;

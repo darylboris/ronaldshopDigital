@@ -10,6 +10,6 @@ export async function POST(request:Request){
        
      }    
  await logOut()
- return NextResponse.json({message:'ssssssss'})
+ return NextResponse.json({message:'deconnexion reussie'})
 
 }
