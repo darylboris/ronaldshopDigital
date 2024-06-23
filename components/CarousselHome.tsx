@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { cn } from "@/lib/utils";
+import shuffleProducts from "@/lib/shuffleProducts";
 
 import {
   Carousel,
@@ -44,7 +45,7 @@ const CarousselHome:React.FC<CarousselProps> = ({titleCaroussel,data}) => {
     {/* { {data === null &&  (
       <CarouselItem>fffffffff</CarouselItem>
     )} } */}
-{data?.map((img,index) =>{
+{shuffleProducts(data)?.map((img,index) =>{
       return (
         <CarouselItem key={index}  className="w-full pl-1 md:basis-1/2 lg:basis-1/3">
      <div className="w-full ">

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Navbar from "../../../components/Navbar";
 import ProductCard from "../../../components/products/ProductCard";
 import Footer from "../../../components/Footer";
-
+import shuffleProducts from "@/lib/shuffleProducts";
 import GetSliderImages from "../../../components/GetSliderImages";
 import authUser from "@/lib/user";
 import { typeProduct } from "../page";
@@ -35,12 +35,12 @@ export default async function Page() {
           {/* Product grid */}
           {!products || products.length === 0  ?
           (
-            <p className="text-2xl">waiting for load products...</p>
+            <p className="text-2xl text-blue-900">waiting for load products...</p>
           )
           :
           (
             <div className="mx-auto grid grid-cols-1 justify-items-center max-w-sm md:grid-cols-2 md:max-w-4xl lg:grid-cols-3 lg:max-w-5xl  xl:grid-cols-4 xl:max-w-6xl gap-8 min-h-[400px]">
-            {products.map((data,index) =>{
+            {shuffleProducts(products).map((data,index) =>{
               return (
                 <ProductCard key={index} product={data} />
               )

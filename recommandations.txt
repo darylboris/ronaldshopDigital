@@ -1,0 +1,12 @@
+npm run dev pour le lancement du projet
+Avant tout faire d'abord npm i pour installer toutes les dépendances
+choix des technologies et dépendances installées
+-TailwindCSS: Framework CSS pour le design du site
+- React-Hook-Form avec Zod: pour la gestion et vérification des formulaires
+- Shadcn ui pour des composants react (input, Avatar,etc..)
+-prisma(ORM) et mongoDb(SGBD) du côté backend pour stocker les utilsateurs et les différentes commandes passées par l'utilisateur
+l'API dummyjson ne permettait pas de pouvoir inscrire les utilisateurs, ni les commandes. C'est plutôt une simulation de ce côté
+-mui pour le dataGrid utilise pour afficher les commandes de l'utilisateur
+- react-hot-toast pour afficher des messages à l'utilisateur
+- lucide react pour les icônes 
+- embacaroussel pour créer des slider

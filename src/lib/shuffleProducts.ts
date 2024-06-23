@@ -1,4 +1,5 @@
 import { typeProduct } from "@/app/page";
+import { typeGetImage } from "../../components/GetSliderImages";
 export default function shuffleProducts(array:typeProduct[]) {
     // Copie du tableau pour éviter de modifier l'original
     const shuffleProducts = [...array];
