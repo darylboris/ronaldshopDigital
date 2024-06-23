@@ -18,6 +18,7 @@ import { User } from "@prisma/client";
 import toast from "react-hot-toast";
 import { ShoppingBag } from 'lucide-react';
 import { CircleUserRound } from 'lucide-react';
+import logo from '../public/logo.jpg'
 const Navbar = ({
  path,
   User,
@@ -126,7 +127,7 @@ const Navbar = ({
           <div className="flex flex-col lg:flex-row w-full gap-x-4">
             <div className="flex w-full justify-center lg:justify-start lg:w-[150px] flex-initial">
             
-              <Image src={vStore} alt="logo V-Store" width={300} />
+              <Image src={logo} alt="logo R-shop" width={250} />
             </div>
             <div className="flex flex-row grow justify-center">
               <div className="grow text-center flex justify-center items-center">

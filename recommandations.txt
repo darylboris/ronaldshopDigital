@@ -1,6 +1,7 @@
 npm run dev pour le lancement du projet
 Avant tout faire d'abord npm i pour installer toutes les dépendances
 choix des technologies et dépendances installées
+- Framework Next JS(developpement web)
 -TailwindCSS: Framework CSS pour le design du site
 - React-Hook-Form avec Zod: pour la gestion et vérification des formulaires
 - Shadcn ui pour des composants react (input, Avatar,etc..)
@@ -10,3 +11,5 @@ l'API dummyjson ne permettait pas de pouvoir inscrire les utilisateurs, ni les c
 - react-hot-toast pour afficher des messages à l'utilisateur
 - lucide react pour les icônes 
 - embacaroussel pour créer des slider
+-jose pour l'authentification par JWT
+-momentjs pour le formatage des dates

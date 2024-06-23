@@ -3,6 +3,7 @@ import React from 'react'
  import vStore from "../public/vStore.png";
 import Link from 'next/link';
 import Image from 'next/image';
+import logo from '../public/logo.jpg'
 const Footer = () => {
     const links = [
        
@@ -18,7 +19,7 @@ const Footer = () => {
         <div className="divide-y-3 divide-gray-500">
             <div className=" flex flex-col lg:flex-row mb-8 gap-4 justify-start lg:gap-32">
                 <div>
-                    <Image className="w-[150px]" src={vStore} alt="" />
+                <Image src={logo} alt="logo R-shop" className='w-[150px]'  />
                 </div>
                 <div className="grow flex flex-col xl:flex-row gap-16">
                     <div className="grow grid grid-cols-2 max-w-sm md:grid-cols-3 md:max-w-5xl gap-x-8 gap-y-16 md:gap-32">
@@ -70,7 +71,7 @@ const Footer = () => {
                         <p>The latest deals and savings, sent to your inbox weekly</p>
                         <div className="flex  gap-x-4 items-stretch">
                             <input className="flex-auto w-[1%] rounded-md px-3 py-2 drop-shadow-sm" type="text" />
-                            <button className="px-3 py-2 rounded-md md:px-4  bg-blue-white cursor-pointer  text-blue-900">Sign Up</button>
+                            <button className="px-3 py-2 rounded-md md:px-4  bg-white cursor-pointer  text-blue-900">Sign Up</button>
                         </div>
     
                         
