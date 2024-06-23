@@ -6,11 +6,11 @@ import Image from 'next/image';
 const Footer = () => {
     const links = [
        
-        { href: "/desktops", content: "Desktops" },
-        { href: "/laptops", content: "Laptops" },
-        { href: "/souris", content: "Souris" },
-        { href: "/modem", content: "Modems" },
-        { href: "/routeurs", content: "Routeurs" },
+        { href: "/beauty", content: "beauté" },
+        { href: "/tops", content: "tops" },
+        { href: "#", content: "laptops" },
+        { href: "#", content: "men-shirts" },
+        { href: "#", content: "men-shoes" },
       ];
   return (
     <footer className="px-8  py-16 pb-0 bg-blue-950 text-white ">
@@ -51,13 +51,12 @@ const Footer = () => {
 
                         </div>
                         <div className="flex flex-col">
-                            <p className=" font-bold mb-4 text-orange-500">Customer Service</p>
+                            <p className=" font-bold mb-4 text-orange-500">Nous Contacter</p>
                             <ul className="space-y-5">
-                                <li>Bags</li>
-                                <li>Tees</li>
-                                <li>Objects</li>
-                                <li>Home Goods</li>
-                                <li>Accessories</li>
+                                <li>Facebook</li>
+                                <li>Twitter</li>
+                                <li>Instagram</li>
+                              
 
                             </ul>
                             
@@ -71,7 +70,7 @@ const Footer = () => {
                         <p>The latest deals and savings, sent to your inbox weekly</p>
                         <div className="flex  gap-x-4 items-stretch">
                             <input className="flex-auto w-[1%] rounded-md px-3 py-2 drop-shadow-sm" type="text" />
-                            <button className="px-3 py-2 rounded-md md:px-4  bg-blue-800 cursor-pointer  text-white">Sign Up</button>
+                            <button className="px-3 py-2 rounded-md md:px-4  bg-blue-white cursor-pointer  text-blue-900">Sign Up</button>
                         </div>
     
                         

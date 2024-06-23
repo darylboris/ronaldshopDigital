@@ -25,6 +25,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
         id: order.id,        
         amount: formatPrice(order.amount),     
         date: moment(order.createdDate).fromNow(),
+        status: order.status,
          deliveryStatus: order.deliveryStatus,
          products:JSON.stringify(order.products)
          
@@ -34,7 +35,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   }
   const columns: GridColDef[] = [
     // { field: "id", headerName: "ID", width: 220 },
-   
+    { field: "date", headerName: "Date", width: 100 },
     {
       field: "amount",
       headerName: "Total(FCFA)",
@@ -46,6 +47,18 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
       },
     },
 
+    {
+      field: "status",
+      headerName: "Statut du paiement",
+      width: 130,
+      renderCell: (params) => {
+        return (
+          <div className="text-blue-900">
+            {params.row.deliveryStatus}
+          </div>
+        );
+      },
+    },
     {
       field: "deliveryStatus",
       headerName: "Statut en cours",
@@ -65,24 +78,25 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
       renderCell: (params) => {
         return (
           <div className="text-gray-500">
-            {params.row.deliveryStatus}
+            {params.row.products}
           </div>
         );
       },
     },
 
     
-    { field: "date", headerName: "Date", width: 130 },
+   
     
   ];
 
   return (
     <div>
-      <div className="flex justify-center items-center min-h-[50px]">
-        <Heading title="MES COMMANDES" center={true} atr=" text-blue-700 mt-4" />
+      <div className="flex justify-center items-center min-h-[50px] text-blue-900 text-2xl font-bold">
+        <p> Historique de vos commandes</p>
+     
       </div>
 
-      <div style={{ height: 600, width: "100%" }}>
+      <div className="min-h-[300px] w-[400px] sm:w-[600px] lg:w-[900PX]">
         <DataGrid
           rows={rows}
           columns={columns}

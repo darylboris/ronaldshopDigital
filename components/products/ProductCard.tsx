@@ -39,8 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="text-gray-500 min-h-[50px] bg-slate-100 flex flex-col space-y-2 justify-center text-center px-3 py-4">
         <p className="text-orange-500">{truncateText(product.description)}</p>
         <div className="space-y-2">
-          <p>{product.reviews?.length ?? 0} avis</p>
-          <p>{product.stock}</p>
+          <p>{product.reviews?.length ?? 0} avis</p>       
        
    
 

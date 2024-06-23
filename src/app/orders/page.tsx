@@ -18,7 +18,7 @@ const page = async() => {
         
     <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
       <Navbar path={""} User = {user} />
-      <main className="grow min-h-[200px] pt-8 max-w-[1150px]  text-xl">
+      <main className="flex mx-auto items-center grow min-h-[200px] py-8  text-xl">
   
 
    {/* <hr className="mx-14 border-2 border-orange-500 mb-4"/> */}
