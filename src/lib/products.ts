@@ -1,7 +1,9 @@
 'use server'
+import getRandomInt from "./randomInt";
 const getProducts = async () => {
+    const randomNumber = getRandomInt();
     try {
-        let resp = await fetch('https://dummyjson.com/products?limit=10&skip=10&select=title,price,category,brand,stock,rating,images,description,reviews')
+        let resp = await fetch(`https://dummyjson.com/products?limit=10&skip=${randomNumber}&select=title,price,category,brand,stock,rating,images,description,reviews`)
     let data = await resp.json()
     console.log(data.products)
     return data.products
@@ -16,7 +18,7 @@ const getProducts = async () => {
 export default getProducts
 export const getProductById = async(id:string) =>{
     try {
-        let resp = await fetch(`https://dummyjson.com/products/${id}?limit=10&skip=10&select=title,price,category,brand,stock,rating,images,description,reviews`)
+        let resp = await fetch(`https://dummyjson.com/products/${id}?select=title,price,category,brand,stock,rating,images,description,reviews`)
        
         
     let data = await resp.json()
@@ -30,13 +32,14 @@ export const getProductById = async(id:string) =>{
 
 }
 export const getAllImages = async(category:string | null ) => {
+    const randomNumber = getRandomInt();
     try {
         // fetch('https://dummyjson.com/products/category/smartphones')
 // .then(res => res.json())
 
 
         if(category === null ) {
-            let resp = await fetch(`https://dummyjson.com/products?limit=10&skip=20&select=images`)
+            let resp = await fetch(`https://dummyjson.com/products?limit=10&skip=${randomNumber}&select=images`)
             let data = await resp.json()
             // console.log(data.products)
             return data.products

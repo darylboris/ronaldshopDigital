@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useCart } from "../hooks/useCart";
-import { ShoppingCartIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,11 +12,18 @@ import ItemContent from "./ItemContent";
 import { formatPrice } from "@/lib/formatPrice";
 import { User,Order } from "@prisma/client";
 import sCart from '../public/sCart.svg'
-
+import axios from "axios";
+import toast from "react-hot-toast";
+import { CartProductType } from "./products/ProductDetails";
 const CartClient = ({User}:{User:User | null}
 ) => {
   const Router = useRouter();
-  const { cartProducts,handleClearCart,cartTotalAmount } = useCart();
+  const cartItems:any = localStorage.getItem('vStoreCartItems')
+        console.log(cartItems)
+        const cProducts: CartProductType[] | null = JSON.parse(cartItems)
+  console.log(cProducts)
+        const { cartProducts,handleClearCart,cartTotalAmount } = useCart();
+  console.log(cartProducts)
   if (!cartProducts || cartProducts.length === 0) {
     return (
       <div className="text-gray-500 flex flex-col justify-center items-center space-y-2">
@@ -53,7 +60,34 @@ const CartClient = ({User}:{User:User | null}
         {User ? (
           <Button
            
-          onClick={()=>{Router.push('/checkout')}}
+          onClick={()=>{fetch('/api/order',{
+            method:"POST",
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({
+                items:cartProducts,              
+                
+            })
+          }).then((res)=>{
+            if(res.status === 401)  return Router.push('/login')
+              if(res.status === 403) return Router.push('/')
+             
+            return res.json()
+          }).then((data)=>{
+            console.log(data)
+            toast.success("commande effectuée")
+            handleClearCart()
+            Router.refresh()
+          })
+          .catch((error)=>{
+            console.log(error)
+            toast.error("une erreur s'est produite",{
+              style:{
+                  backgroundColor:"red",
+                  color:"white"
+              }
+          })
+          })
+        }}
       
             className="mb-2 w-full flex flex-col justify-center items-center bg-blue-700 hover:bg-blue-900 text-white px-4 py-2 rounded-lg"
           >

@@ -29,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           fill
             // width={300}
             // height={300}
-            className="rounded-xl object-contain w-full"
+            className="rounded-xl object-contain w-[300px]"
             src={product.images[0]}
             alt={""}
           />

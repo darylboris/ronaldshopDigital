@@ -14,7 +14,7 @@ export type typeProduct = {
   description: string,
   category: string,
   price: number,
-  brand:string, 
+  brand?:string, 
   rating: number,
   stock: number,
   reviews?: {    
