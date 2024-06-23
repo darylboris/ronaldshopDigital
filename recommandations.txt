@@ -13,3 +13,5 @@ l'API dummyjson ne permettait pas de pouvoir inscrire les utilisateurs, ni les c
 - embacaroussel pour créer des slider
 -jose pour l'authentification par JWT
 -momentjs pour le formatage des dates
+- les onglets beaute et top pour les categories sont les seuls que j'ai implementé
+
